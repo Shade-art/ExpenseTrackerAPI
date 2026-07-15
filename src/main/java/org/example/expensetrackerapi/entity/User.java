@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,4 +21,8 @@ public class User {
     private String name;
     @Column(nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private List<Expenses> expenses;
+
 }
