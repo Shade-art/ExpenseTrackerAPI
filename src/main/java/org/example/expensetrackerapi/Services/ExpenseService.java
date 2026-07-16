@@ -1,12 +1,17 @@
 package org.example.expensetrackerapi.Services;
 
 import org.example.expensetrackerapi.DTO.CreateExpenseDTO;
+import org.example.expensetrackerapi.DTO.ExpenseResponseDTO;
 import org.example.expensetrackerapi.entity.Expense;
 import org.example.expensetrackerapi.entity.User;
 import org.example.expensetrackerapi.exception.UserNotFoundException;
 import org.example.expensetrackerapi.repository.ExpenseRepository;
 import org.example.expensetrackerapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -33,6 +38,25 @@ public class ExpenseService {
         expense.setCategory(expenseDTO.getCategory());
         expense.setExpenseDate(expenseDTO.getExpenseDate());
         expenseRepository.save(expense);
+    }
+
+    public List<ExpenseResponseDTO> showExpenseOfUser(Integer id)
+    {
+        List<Expense> expenses = expenseRepository.findByUserId(id);
+        List<ExpenseResponseDTO> response = new ArrayList<>();
+        ExpenseResponseDTO expenseResponseDTO;
+        for (Expense expense : expenses) {
+
+            ExpenseResponseDTO dto = new ExpenseResponseDTO(
+                    expense.getAmount(),
+                    expense.getRemarks(),
+                    expense.getCategory(),
+                    expense.getExpenseDate()
+            );
+
+            response.add(dto);
+        }
+        return response;
     }
 }
 
