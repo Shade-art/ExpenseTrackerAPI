@@ -23,6 +23,6 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    private List<Expenses> expenses;
+    private List<Expense> expenses;
 
 }

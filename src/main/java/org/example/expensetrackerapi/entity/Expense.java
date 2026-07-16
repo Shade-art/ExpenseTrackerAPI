@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Expenses {
+public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
