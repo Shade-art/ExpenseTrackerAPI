@@ -10,10 +10,8 @@ import org.example.expensetrackerapi.repository.ExpenseRepository;
 import org.example.expensetrackerapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -46,7 +44,6 @@ public class ExpenseService {
     {
         List<Expense> expenses = expenseRepository.findByUserId(id);
         List<ExpenseResponseDTO> response = new ArrayList<>();
-        ExpenseResponseDTO expenseResponseDTO;
         for (Expense expense : expenses) {
 
             ExpenseResponseDTO dto = new ExpenseResponseDTO(
@@ -64,6 +61,11 @@ public class ExpenseService {
     public List<CategoryTotalResponseDTO> getTotalByUser(Integer id)
     {
         return expenseRepository.getCategoryTotals(id);
+    }
+
+    public void deleteExpenseByID(Integer id)
+    {
+        expenseRepository.deleteById(id);
     }
 }
 

@@ -41,6 +41,11 @@ public class ExpenseController {
         return expenseService.getTotalByUser(id);
     }
 
-
+    @DeleteMapping("/expense/{id}")
+    public String deleteExpense(@PathVariable Integer id)
+    {
+        expenseService.deleteExpenseByID(id);
+        return "expense deleted";
+    }
 
 }
