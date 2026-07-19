@@ -1,5 +1,6 @@
 package org.example.expensetrackerapi.Services;
 
+import org.example.expensetrackerapi.DTO.CategoryTotalResponseDTO;
 import org.example.expensetrackerapi.DTO.CreateExpenseDTO;
 import org.example.expensetrackerapi.DTO.ExpenseResponseDTO;
 import org.example.expensetrackerapi.entity.Expense;
@@ -9,6 +10,7 @@ import org.example.expensetrackerapi.repository.ExpenseRepository;
 import org.example.expensetrackerapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +59,11 @@ public class ExpenseService {
             response.add(dto);
         }
         return response;
+    }
+
+    public List<CategoryTotalResponseDTO> getTotalByUser(Integer id)
+    {
+        return expenseRepository.getCategoryTotals(id);
     }
 }
 

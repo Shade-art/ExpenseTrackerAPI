@@ -1,11 +1,13 @@
 package org.example.expensetrackerapi.controller;
 
+import org.example.expensetrackerapi.DTO.CategoryTotalResponseDTO;
 import org.example.expensetrackerapi.DTO.CreateExpenseDTO;
 import org.example.expensetrackerapi.DTO.ExpenseResponseDTO;
 import org.example.expensetrackerapi.Services.ExpenseService;
 import org.example.expensetrackerapi.entity.Expense;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +34,13 @@ public class ExpenseController {
     {
         return expenseService.showExpenseOfUser(id);
     }
+
+    @GetMapping("/{id}/total")
+    public List<CategoryTotalResponseDTO> getTotalByUser(@PathVariable Integer id)
+    {
+        return expenseService.getTotalByUser(id);
+    }
+
+
 
 }
